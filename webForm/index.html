@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>
+        Pokemon Maker - DoomRed
+    </title>
+    <script src="validate.js"></script>
+    <script src="types.js"></script>
+    <script src="moveset.json"></script>
+    <script src="abilities.json"></script>
+    <script src="populateOptions.js"></script>
+</head>
+<body onload="populateOptions()">
+    
+<div style="text-align: center">
+    <form name="pokemon" onsubmit="return validateForm()">
+        
+        <div class="formRow">
+            <button type="button" onclick="randomize()">Randomize</button>
+        </div>
+        
+        <div class="formRow">
+            <b>Name:</b> <input type="text" name="name">
+        </div>
+        
+        <div class="formRow">
+            <b>Type 1:</b> <select class="type" name="type1"></select>
+            <b>Type 2:</b> <select class="type" name="type2"></select>
+        </div>
+        
+        <div class="formRow">
+            <b>Attack 1:</b> <select class="attack" name="attack1"></select>
+            <b>Attack 2:</b> <select class="attack" name="attack2"></select>
+            <b>Attack 3:</b> <select class="attack" name="attack3"></select>
+            <b>Attack 4:</b> <select class="attack" name="attack4"></select>
+        </div>
+        
+        <div class="formRow">
+            <b>Ability 1:</b> <select class="ability" name="ability1"></select>
+            <b>Ability 2(?):</b> <select class="ability" name="ability2"></select>
+        </div>
+        
+        <div class="formRow">
+            <b>Gender:</b>
+            <input type="radio" name="gender" value="0" checked="checked"> Male
+            <input type="radio" name="gender" value="1"> Female
+            <input type="radio" name="gender" value="2"> Genderless
+        </div>
+        
+        <div class="formRow">
+            <input type="submit">
+        </div>
+        
+        <!-- to add: movesets, cries, footprints, held item, tms learnable, sprites -->
+    </form>
+</div>
+    
+</body>
+</html>

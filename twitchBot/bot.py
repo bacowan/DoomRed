@@ -26,15 +26,15 @@ def sendPingResponse(sock):
     sock.send(PING_RESPONSE.encode("utf-8"))
 
 def handleChatInput(sock, input, queue):
-    username = re.search(r"\w+", input).group(0)
-    message = CHAT_MSG.sub("", input).strip()
     try:
+        username = re.search(r"\w+", input).group(0)
+        message = CHAT_MSG.sub("", input).strip()
         print (username + ":-" + message + "-")
+        com = command.commandFactory(message)
+        startCommandThread(com, (username, sock, queue))        
     except:
         libs.chat(sock, "Stop trying to break me BibleThump")
         return
-    com = command.commandFactory(message)
-    startCommandThread(com, (username, sock, queue))
 
 def startCommandThread(com, arg):
     Thread(target=com, args=arg).start()

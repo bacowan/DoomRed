@@ -19,22 +19,30 @@ function PokemonWriter:new ()
         memory.writebyte(pokemonPointer+cfg.pokemonNicknameOffset+#text, 0xFF)
     end
     
-    local overwriteData = function(self, growth, attacks, ev, misc, substructureOrder, input, pokemonPointer)
+    local overwriteData = function(self, growth, attacks, ev, misc, substructureOrder, baseStats, input)
         InputConverter = InputConverterClass.InputConverter(substructureOrder)
         InputConverter:convertInput(input, growth, attacks, ev, misc, self.lastPokemonSlotUsed)
-        InputConverter:convertUnencryptedData(input)
-        InputConverter:setRequestedValues(self.encryptor)
+        InputConverter:convertUnencryptedData(input, baseStats)
     end
     
-    local writeNewData = function(encryptedData,pokemonPointer)
+    local writeEncryptedData = function(encryptedData,pokemonPointer)
         for i=1,12 do
             memory.writedword(pokemonPointer+cfg.pokemonDataOffset+(i-1)*4, encryptedData[i])
         end
     end
     
+    local writeUnencryptedData = function(baseStats, pokemonId)
+        baseStatsPointer = cfg.baseStatsPointer + cfg.baseStatsSize*(pokemonId-1)
+        print(baseStatsPointer)
+        for i=1,cfg.baseStatsSize do
+            memory.writebyte(baseStatsPointer+(i-1), baseStats[i])
+        end
+    end
+    
     self.overwriteNickname = overwriteNickname
     self.overwriteData = overwriteData
-    self.writeNewData = writeNewData
+    self.writeEncryptedData = writeEncryptedData
+    self.writeUnencryptedData = writeUnencryptedData
     
     o = {}
     setmetatable(o, self)
@@ -55,13 +63,17 @@ function PokemonWriter:writePokemon(input, pokemonPointer)
     growth, attacks, ev, misc, encryptionKey = self.encryptor:decryptAll(encryptedData, personality, otId)
     
     substructureOrder = PokemonEncryptor.getSubstructureOrder(personality)
-    self:overwriteData(growth, attacks, ev, misc, substructureOrder, input)
+    
+    baseStats = memory.readbyterange(cfg.baseStatsPointer + (self.lastPokemonSlotUsed-1)*cfg.baseStatsSize, cfg.baseStatsSize)
+    
+    self:overwriteData(growth, attacks, ev, misc, substructureOrder, baseStats, input)
     
     reEncryptedData, checksum = self.encryptor:encryptAll(growth, attacks, ev, misc, personality, encryptionKey)
     
     self:overwriteNickname(input.name, pokemonPointer)
-    self.writeNewData(reEncryptedData,pokemonPointer)
+    self.writeEncryptedData(reEncryptedData,pokemonPointer)
     memory.writeword(pokemonPointer+cfg.pokemonChecksumOffset, newChecksum) --checksum
+    self.writeUnencryptedData(baseStats, self.lastPokemonSlotUsed)
 end
 
 function PokemonWriter:incrementNewPokemonSpecies()

@@ -3,11 +3,19 @@ import json
 import libs
 import cfg
 import datetime
+import csv
 from enum import Enum
 
 class PokemonError(Enum):
     expired = 1
     notThere = 2
+
+movePPs = {}
+
+with open('movePPs.csv', 'r') as csvfile:
+    reader = csv.reader(csvfile)
+    for row in reader:
+        movePPs[row[0]] = row[1]
 
 def getFormattedResult(page):
     proxy.read(page,cfg.PAGES_PER_QUERY)
@@ -40,15 +48,25 @@ def getInputFromBitBalloon(code):
 
 def formatInput(inputValue):
     output = ""
+    # name
     for i in xrange(0,10):
         if len(inputValue['Name']) > i:
             output += inputValue['Name'][i]
         else:
             output += "\t"
+    # attacks
     output += "{:0>3d}".format(int(inputValue['Attack1']))
     output += "{:0>3d}".format(int(inputValue['Attack2']))
     output += "{:0>3d}".format(int(inputValue['Attack3']))
     output += "{:0>3d}".format(int(inputValue['Attack4']))
+    # PP
+    output += "{:0>3d}".format(int(movePPs[inputValue['Attack1']]))
+    output += "{:0>3d}".format(int(movePPs[inputValue['Attack2']]))
+    output += "{:0>3d}".format(int(movePPs[inputValue['Attack3']]))
+    output += "{:0>3d}".format(int(movePPs[inputValue['Attack4']]))
+    # Types
+    output += "{:0>2d}".format(int(inputValue['Type1']))
+    output += "{:0>2d}".format(int(inputValue['Type2']))
     return output
 
 def pokemonCommand(username, sock, queue, text):

@@ -79,16 +79,11 @@ function PokemonEncryptor:decryptAll(encryptedData, personality, otId)
     local encryptionKey = bit.bxor(otId, personality)
     
     decryptedData = {}
-    print(string.format("otID: 0x%x", otId))
-    print(string.format("personality: 0x%x", personality))
     for i=1,12 do
         decryptedData[i] = bit.bxor(encryptedData[i], encryptionKey)
-        print(string.format("0x%x",decryptedData[i]))
     end
     
     substructureOrder = self.getSubstructureOrder(personality)
-    print("substructureOrder")
-    print(substructureOrder)
     decryptedGrowth = self.retrieveDecrypted(decryptedData,substructureOrder,cfg.G)
     decryptedAttacks = self.retrieveDecrypted(decryptedData,substructureOrder,cfg.A)
     decryptedEv = self.retrieveDecrypted(decryptedData,substructureOrder,cfg.E)

@@ -16,25 +16,15 @@ function InputConverter.new(substructureOrder)
 end
 
 function InputConverter:convertInput(input, growth, attacks, ev, misc, pokemonNumber)
-    self.growth = growth
-    self.attacks = attacks
-    self.ev = ev
-    self.misc = misc
-    print('attacks')
-    print(string.format("0x%x", self.attacks[1]))
-    print(string.format("0x%x", self.attacks[2]))
-    print(string.format("0x%x", self.attacks[3]))
-    self.attacks[1] = bit.bor(input.attack1, input.attack2*0x10000)
-    self.attacks[2] = bit.bor(input.attack3, input.attack4*0x10000)
-    self.growth[1] = bit.bor(bit.band(self.growth[1],0xFFFF0000),pokemonNumber)
+    attacks[1] = bit.bor(input.attack1, input.attack2*0x10000)
+    attacks[2] = bit.bor(input.attack3, input.attack4*0x10000)
+    attacks[3] = bit.bor(input.pp1, input.pp2*0x100, input.pp3*0x10000, input.pp4*0x1000000)
+    growth[1] = bit.bor(bit.band(growth[1],0xFFFF0000),pokemonNumber)
 end
 
-function InputConverter:setRequestedValues(encryptor)
-    encryptor.setRequestedValues(self.growth, self.attacks, self.ev, self.misc, self.substructureOrder)
-end
-
-function InputConverter:convertUnencryptedData(input)
-    
+function InputConverter:convertUnencryptedData(input, baseStats)
+    baseStats[7] = input.type1
+    baseStats[8] = input.type2
 end
 
 M.InputConverter = InputConverter

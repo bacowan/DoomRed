@@ -13,6 +13,7 @@ PING_REQUEST = "PING :tmi.twitch.tv\r\n"
 PING_RESPONSE = "PONG :tmi.twitch.tv\r\n"
 SEND_RATE = float(2)/float(3)
 CHAT_MSG=re.compile(r"^:\w+!\w+@\w+\.tmi\.twitch\.tv PRIVMSG #\w+ :")
+EMPTY_TEXT = "0"
 
 def connect():
     s = socket.socket()
@@ -54,7 +55,7 @@ def luaWriter(queue):
             try:
                 text = queue.get(block=False)
             except Empty:
-                text = "0"
+                text = EMPTY_TEXT
             pipe.write(text)
 
 def startPipeThread(q):

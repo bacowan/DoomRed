@@ -1,10 +1,11 @@
 PokemonWriter = require 'PokemonWriter'
 PokemonChanges = require 'PokemonChanges'
+container = require 'UsedPokemonContainer'
 cfg = require 'cfg'
 
 currentBattleType = 0
 
-pokemonWriter = PokemonWriter.PokemonWriter:new{}
+usedPokemonContainer = container.UsedPokemonContainer:new{}
 
 function readPipe()
     f = io.open(cfg.fileName, 'r')
@@ -14,15 +15,13 @@ end
 
 function initializePokemon(pokemonPointer)
     input = readPipe()
-    
     if input == "0" then
         return
     end
     
-    pokemonWriter:incrementNewPokemonSpecies()
+    local nextPokemon = usedPokemonContainer:nextPokemon()
     pokemonChanges = PokemonChanges.PokemonChanges:new(input)
-    
-    pokemonWriter:writePokemon(pokemonChanges, pokemonPointer)
+    PokemonWriter.writePokemon(pokemonChanges, pokemonPointer, nextPokemon)
 end
 
 function battleStarting()

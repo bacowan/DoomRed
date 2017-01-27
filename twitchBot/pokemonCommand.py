@@ -54,6 +54,7 @@ def formatInput(inputValue):
             output += inputValue['Name'][i]
         else:
             output += "\t"
+    print (inputValue)
     # attacks
     output += "{:0>3d}".format(int(inputValue['Attack1']))
     output += "{:0>3d}".format(int(inputValue['Attack2']))
@@ -67,6 +68,8 @@ def formatInput(inputValue):
     # Types
     output += "{:0>2d}".format(int(inputValue['Type1']))
     output += "{:0>2d}".format(int(inputValue['Type2']))
+    # Abilities
+    output += "{:0>2d}".format(int(inputValue['Ability']))
     return output
 
 def pokemonCommand(username, sock, queue, text):

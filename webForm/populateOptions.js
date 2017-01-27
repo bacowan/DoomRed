@@ -34,3 +34,16 @@ function randomizeDropDown(className, list) {
         comboBoxes[i].selectedIndex = Math.floor((Math.random() * comboBoxes[i].length) + 1);
     }
 }
+
+function showAdvanced() {
+    var element = document.getElementById("advanced");
+    var advancedButton = document.getElementById("advancedButton");
+    if (element.style.display === "none") {
+        element.style.display = "block";
+        advancedButton.innerHTML = "Hide Advanced ▲"
+    }
+    else {
+        element.style.display = "none";
+        advancedButton.innerHTML = "Show Advanced ▼"
+    }
+}

@@ -15,9 +15,9 @@
     
 <div style="text-align: center">
     <form name="pokemon" onsubmit="return validateForm()">
-        
         <div class="formRow">
             <button type="button" onclick="randomize()">Randomize</button>
+            <input type="submit">
         </div>
         
         <div class="formRow">
@@ -37,8 +37,7 @@
         </div>
         
         <div class="formRow">
-            <b>Ability 1:</b> <select class="ability" name="ability1"></select>
-            <b>Ability 2(?):</b> <select class="ability" name="ability2"></select>
+            <b>Ability:</b> <select class="ability" name="ability"></select>
         </div>
         
         <div class="formRow">
@@ -49,7 +48,20 @@
         </div>
         
         <div class="formRow">
-            <input type="submit">
+            <p id="advancedButton" onclick="showAdvanced()" class="selectable">
+                Show Advanced ▼
+            </p>
+        </div>
+        
+        <div id="advanced" class="formRow" style="display: none;">
+            <b>Moveset:</b>
+            <table border="1">
+                <tr>
+                    <th>Level Learned</th>
+                    <th>Move</th>
+                </tr>
+            </table>
+            <button type="button" onclick="addRow()">Add row</button>
         </div>
         
         <!-- to add: movesets, cries, footprints, held item, tms learnable, sprites -->

@@ -19,6 +19,7 @@ function PokemonChanges:new (inp)
     o.pp4 = tonumber(inp:sub(32,34))
     o.type1 = tonumber(inp:sub(35,36))
     o.type2 = tonumber(inp:sub(37,38))
+    o.ability = tonumber(inp:sub(39,40))
     
     return o
 end

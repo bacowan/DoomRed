@@ -71,15 +71,19 @@ obj.startWildBattle = 0
 obj.startTrainerBattle = 8
 obj.battleTypePointer = 0x02022B4C
 obj.fileName = '\\\\.\\pipe\\doomred'
-obj.pokemonDataOffset = 32
 obj.pokemonDataSize = 100
 obj.pokemonChecksumOffset = 28
 obj.pokemonNicknameOffset = 8
 obj.enemyPokemonPointers = {
     0x0202402C, 0x02024090, 0x020240F4, 0x02024158, 0x020241BC, 0x02024220
 }
+obj.enemyPokemonPointer = 0x0202402C -- pointer to the enemy pokemon's data structure
+obj.pokemonBaseStatsPointer = 0x08254810
+obj.dataStructureOffset = 32
+obj.checksumOffset = 28
+obj.substructureSize = 12
+obj.levelOffset = 84
 
---obj.pokemonNamesPointer = 0x08245F5B
 obj.pokemonNamesPointer = 0x08245EE0
 obj.pokemonNameSize = 10
 obj.baseStatsPointer = 0x08254810

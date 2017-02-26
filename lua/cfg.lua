@@ -84,19 +84,30 @@ obj.checksumOffset = 28
 obj.substructureSize = 12
 obj.levelOffset = 84
 
-obj.pokemonNamesPointer = 0x08245EE0
+obj.pokemonNamesPointer = 0x08245F50
 obj.pokemonNameSize = 10
 obj.baseStatsPointer = 0x08254810
 obj.baseStatsSize = 28
-obj.frontSpritePointer = 0x082350AC
+obj.frontSpritePointer = 0x0823511C
 obj.backSpritePointer = 0x0823654C
-obj.frontPalettePointer = 0x0823730C
-obj.backPalettePointer = 0x082380CC
-obj.iconPointers = 0x083D37A0
+obj.frontPalettePointer = 0x0823737C
+obj.backPalettePointer = 0x082365BC
+obj.iconPointers = 0x083D3810
 obj.iconPalettes = 0x083D3E80
 obj.cries = 0x0848C914
 obj.tmsLearnable = 0x08252bc8
 obj.movesets =  0x08257494
+obj.movesetPointers = 0x0825D824
+
+obj.romStartAddress = 0x08000000
+obj.romEndAddress = 0x09FC03FF
+obj.surroundingBlankSpace = 0
+
+obj.box1start = 0x2029368
+obj.boxPositionCount = 420
+
+
+obj.maxPokemonId = 410
 
 
 return obj

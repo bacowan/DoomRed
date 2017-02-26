@@ -1,9 +1,10 @@
 from functools import partial
 import re
-import libs
-import pipes
-import cfg
+import fullPokemonCommand
 import pokemonCommand
+
+def fullPokemon(username, sock, queue, text):
+    fullPokemonCommand.pokemonCommand(username, sock, queue, text)
 
 def pokemon(username, sock, queue, text):
     pokemonCommand.pokemonCommand(username, sock, queue, text)
@@ -12,6 +13,7 @@ def noCommand(username, sock, queue, text):
     pass
     
 commands = {
+    "!fullPokemon" : fullPokemon,
     "!pokemon" : pokemon
 }
 

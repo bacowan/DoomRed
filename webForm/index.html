@@ -14,7 +14,7 @@
 <body onload="populateOptions()">
     
 <div style="text-align: center">
-    <form name="pokemon" onsubmit="return validateForm()">
+    <form name="pokemon" onsubmit="return onFormSubmit()">
         <div class="formRow">
             <button type="button" onclick="randomize()">Randomize</button>
             <input type="submit">
@@ -22,6 +22,13 @@
         
         <div class="formRow">
             <b>Name:</b> <input type="text" name="name">
+        </div>
+        
+        <div class="formRow">
+            <b>Image:</b>
+            <input type="radio" name="image" value="0" checked="checked"> Emote
+            <input type="radio" name="image" value="1"> Url
+            <input type="text" name="imageLink">
         </div>
         
         <div class="formRow">
@@ -34,10 +41,6 @@
             <b>Attack 2:</b> <select class="attack" name="attack2"></select>
             <b>Attack 3:</b> <select class="attack" name="attack3"></select>
             <b>Attack 4:</b> <select class="attack" name="attack4"></select>
-        </div>
-        
-        <div class="formRow">
-            <b>Ability:</b> <select class="ability" name="ability"></select>
         </div>
         
         <div class="formRow">
@@ -54,17 +57,31 @@
         </div>
         
         <div id="advanced" class="formRow" style="display: none;">
+            <div class="formRow">
+                <b>Ability:</b> <select class="ability" name="ability"></select>
+            </div>
             <b>Moveset:</b>
-            <table border="1">
-                <tr>
-                    <th>Level Learned</th>
-                    <th>Move</th>
-                </tr>
+            <table border="1" id="movesetTable">
+                <template id="movesetRowTemplate">
+                    <tr>
+                        <td><input name="movesLearnable" type="number" min="1" max="100"/></td>
+                        <td><select name="movesLearnable" class="attack"/></td>
+                        <td><button type="button" onclick="removeRow(this)">Delete</button></td>
+                    </tr>
+                </template>
+                <thead>
+                    <tr>
+                        <th>Level Learned</th>
+                        <th>Move</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
             </table>
-            <button type="button" onclick="addRow()">Add row</button>
+            <button id="newRowButton" type="button" onclick="addUserRow()">Add row</button>
         </div>
         
-        <!-- to add: movesets, cries, footprints, held item, tms learnable, sprites -->
+        <!-- to add: cries, footprints, held item, tms learnable-->
     </form>
 </div>
     

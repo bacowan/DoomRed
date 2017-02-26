@@ -1,4 +1,4 @@
-import urllib2
+import urllib.request
 import cfg
 
 def url(page, perPage):
@@ -10,7 +10,7 @@ def formatResponse(response):
     return ret
 
 def read(page, perPage):
-    return urllib2.urlopen(url(page,perPage)).read()
+    return urllib.request.urlopen(url(page,perPage)).read()
 
 def main():
     response = read(1,1)

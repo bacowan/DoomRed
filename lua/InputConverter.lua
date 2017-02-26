@@ -21,7 +21,7 @@ function convertSubstructures(input, pokemonId, level, levelUpType, growth, atta
     growth[1] = bit.band(pokemonId, 0xFF)
     growth[2] = bit.rshift(pokemonId, 8)
     
-    -- overwrite the exp. Not sure why it's organized like this.
+    -- overwrite the exp.
     local exp = levelsToExp[level][levelUpType+2]
     growth[5] = bit.band(exp, 0xFF)
     growth[6] = bit.band(bit.rshift(exp,8),0xFF)
@@ -34,7 +34,7 @@ function convertBaseStats(input, baseStats)
     baseStats[8] = input.type2
     baseStats[23] = input.ability
     baseStats[24] = input.ability
-    print (baseStats)
+    baseStats[17] = input.gender
 end
 
 M.convertSubstructures = convertSubstructures

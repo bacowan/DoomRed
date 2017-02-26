@@ -9,7 +9,7 @@ def chat(sock, msg):
     sock -- the socket over which to send the message
     msg  -- the message to be sent
     """
-    sock.send("PRIVMSG {} :{}\r\n".format(cfg.CHAN, msg))
+    sock.send(("PRIVMSG {} :{}\r\n".format(cfg.CHAN, msg)).encode())
 
 def ban(sock, user):
     """

@@ -5,14 +5,14 @@ import pipes
 import socket
 import re
 from threading import Thread
-from Queue import Queue
-from Queue import Empty
+from queue import Queue
+from queue import Empty
 from time import sleep
 
 PING_REQUEST = "PING :tmi.twitch.tv\r\n"
 PING_RESPONSE = "PONG :tmi.twitch.tv\r\n"
 SEND_RATE = float(2)/float(3)
-CHAT_MSG=re.compile(r"^:\w+!\w+@\w+\.tmi\.twitch\.tv PRIVMSG #\w+ :")
+CHAT_MSG = re.compile(r"^:\w+!\w+@\w+\.tmi\.twitch\.tv PRIVMSG #\w+ :")
 EMPTY_TEXT = "0"
 
 def connect():
@@ -51,7 +51,7 @@ def processChat(sock, queue):
 
 def luaWriter(queue):
     while True:
-        with pipes.Pipe(r'\\.\pipe\doomred') as pipe:
+        with pipes.Pipe('\\\\.\\pipe\\doomred') as pipe:
             try:
                 text = queue.get(block=False)
             except Empty:

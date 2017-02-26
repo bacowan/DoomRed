@@ -2,6 +2,13 @@ validCharacters = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "!", "?", "
 
 validSpecialCharacters = ["$", "Lv", "PK", "MN", "PO", "Ké"]
 
+function onFormSubmit() {
+    if (validateForm())
+        setTableNames();
+    else
+        return false;
+}
+
 function validateForm() {
     var x = document.forms["pokemon"]["name"].value;
     if (x.length > 10 || x.length < 1) {
@@ -13,5 +20,14 @@ function validateForm() {
             alert("\"" + x.charAt(i) + "\" is not a valid character");
             return false;
         }
+    }
+    return true;
+}
+
+function setTableNames() {
+    var table = document.getElementById("movesetTable");
+    for (var i=1; i < table.rows.length; i++) {
+        table.rows[i].cells[0].childNodes[0].setAttribute("name", "movesLearnable["+String(i)+"]['level']");
+        table.rows[i].cells[1].childNodes[0].setAttribute("name", "movesLearnable["+String(i)+"]['move']");
     }
 }

@@ -53,7 +53,7 @@ def luaWriter(queue):
     while True:
         with pipes.Pipe('\\\\.\\pipe\\doomred') as pipe:
             try:
-                text = queue.get(block=False)
+                text = queue.get(block=False)[1]
             except Empty:
                 text = EMPTY_TEXT
             pipe.write(text)

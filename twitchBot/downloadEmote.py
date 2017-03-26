@@ -67,9 +67,14 @@ def downloadEmote(emoteName):
         return downloadTwitchEmote(emoteName)
     elif emoteName in ffzCodeData:
         return downloadFfzEmote(emoteName)
+    else:
+        return None
 
 def getEmote(emoteName):
-    bytes = io.BytesIO(downloadEmote(emoteName))
+    rawDownload = downloadEmote(emoteName)
+    if rawDownload == None:
+        raise NoEmoteException()
+    bytes = io.BytesIO(rawDownload)
     rawImage = Image.open(bytes).resize((64,64))
 
     bmpImage = Image\
@@ -103,3 +108,6 @@ def getEmote(emoteName):
 
 if __name__ == "__main__":
     getEmote("theosPaint")
+
+class NoEmoteException(Exception):
+    pass

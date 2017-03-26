@@ -1,10 +1,12 @@
 import libs
 import pokemonCommandLibs
+from downloadEmote import NoEmoteException
 from random import randint
 
-def generatePokemon(text):
+def generatePokemon(text, username):
     params = text.split()
     ret = {}
+    ret['Username'] = username
     ret['Attack1'] = str(randint(0, pokemonCommandLibs.attackCount))
     ret['Attack2'] = str(randint(0, pokemonCommandLibs.attackCount))
     ret['Attack3'] = str(randint(0, pokemonCommandLibs.attackCount))
@@ -28,23 +30,25 @@ def generatePokemon(text):
     else:
         ret['Type1'] = str(pokemonCommandLibs.types[params[1]])
         ret['Type2'] = str(pokemonCommandLibs.types[params[2]])
-    return ret, True
+    return ret
 
 
-def pokemonCommand(username, sock, queue, text):
-    libs.chat(sock, "kudWafu")
-    jsonPokemon, error = generatePokemon(text)
-    if error != True:
-        libs.chat(sock, "That pokemon has either expired or does not exist.")
-    if jsonPokemon != None:
+def pokemonCommand(username, sock, queue, text, validators):
+    jsonPokemon = generatePokemon(text, username)
+    error, errorMessage = validatePokemon(jsonPokemon, validators, queue)
+    if (error):
+        libs.chat(sock, errorMessage)
+        return
+    try:
         formattedInput = pokemonCommandLibs.formatInput(jsonPokemon)
-        if (validate(formattedInput) and approve(formattedInput)):
-            queue.put(formattedInput.encode("ascii", "ignore"))
+        queue.put([jsonPokemon, formattedInput.encode("ascii", "ignore")])
+        libs.chat(sock, text + " has been added to the queue (queue position: " + str(queue.qsize()) + ")")
+    except NoEmoteException:
+        libs.chat(sock, "That does not appear to be a valid Twitch or FFZ emote :(")
 
-
-def validate(formattedInput):
-    return True
-
-
-def approve(formattedInput):
-    return True
+def validatePokemon(jsonPokemon, validators, queue):
+    for validatorName, validator in validators.items():
+        error, errorMessage = validator.validate(jsonPokemon, queue)
+        if error:
+            return True, errorMessage
+    return False, None

@@ -15,7 +15,7 @@ Pokemon FireRed rom hack that introduces twitch integration: viewers create thei
 5. Download [VBA-RR](http://tasvideos.org/EmulatorResources/VBA.html)
 6. Obtain a ROM of Pokemon FireRed US V1.1
 
-# Other Configuration
+# Other Configurations
 In DoomRed\twitchBot\cfg.cfg there are other configurations that can be set related to the gameplay itself:
 - DEFAULT_USER_LIMIT: this the the maximum number of pokemon that a user can have queued at any given time. Set to 0 for no limit.
 - DEFAULT_ALLOW_REPEATS: this tells the game whether or not multiple of the same emote can be queued at the same time.

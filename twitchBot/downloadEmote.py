@@ -4,17 +4,22 @@ import urllib.request
 import urllib.error
 import io
 import array
+import os
+
 from lszz.compress import compress
 from PIL import Image
 
 twitchUrl = "https://static-cdn.jtvnw.net/emoticons/v1/{}/1.0"
 ffzUrl = "https://cdn.frankerfacez.com/emoticon/{}/{}"
+currentDir = os.path.dirname(__file__)
+twitchEmotesFilePath = os.path.join(currentDir, 'emotes.json')
+ffzEmotesFilePath = os.path.join(currentDir, 'ffz.json')
 
-with open('emotes.json') as file:
+with open(twitchEmotesFilePath) as file:
     data = json.load(file)
 codeToId = {data["images"][i]["code"]: i for i in data["images"]}
 
-with open('ffz.json') as ffzFile:
+with open(ffzEmotesFilePath) as ffzFile:
     ffzCodeData = json.load(ffzFile)
 
 def tile(im):

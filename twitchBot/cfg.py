@@ -1,7 +1,9 @@
 import configparser
+import os
 
 config = configparser.RawConfigParser()
-config.read('cfg.cfg')
+file_path = os.path.join(os.path.dirname(__file__), 'cfg.cfg')
+config.read(file_path)
 
 HOST = config.get('twitch', 'HOST')
 PORT = config.getint('twitch', 'PORT')

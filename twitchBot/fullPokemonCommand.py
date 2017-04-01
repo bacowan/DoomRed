@@ -46,7 +46,7 @@ def pokemonCommand(username, sock, queue, text):
     if jsonPokemon != None:
         formattedInput = pokemonCommandLibs.formatInput(jsonPokemon)
         if (validate(formattedInput) and approve(formattedInput)):
-            queue.put(formattedInput.encode("ascii","ignore"))
+            queue.put(input.encode("ascii", "ignore"))
 
 def validate(formattedInput):
     return True

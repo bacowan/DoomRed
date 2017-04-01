@@ -1,6 +1,10 @@
 import csv
 from downloadEmote import getEmote
 import binascii
+import os
+
+currentDir = os.path.dirname(__file__)
+movePPsPath = os.path.join(currentDir, 'movePPs.csv')
 
 types = {
     "normal": 0,
@@ -28,7 +32,7 @@ attackCount = 354
 abilityCount = 77
 typesCount = 18
 
-with open('movePPs.csv', 'r') as csvfile:
+with open(movePPsPath, 'r') as csvfile:
     reader = csv.reader(csvfile)
     for row in reader:
         movePPs[row[0]] = row[1]

@@ -1,0 +1,1 @@
+python twitchBot\setup.py install

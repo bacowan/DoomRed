@@ -1,0 +1,1 @@
+python twitchBot\bot.py

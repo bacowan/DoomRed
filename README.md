@@ -5,12 +5,12 @@ Pokemon FireRed rom hack that introduces twitch integration: viewers create thei
 1. Download this repo as a zip
 2. Download [python 3](https://www.python.org/downloads/) (make sure to check the option "add to system variables")
 3. set up config file:
-  1. Log into your bot's account (if you don't have an account for your bot, you can either create one or just use your own account).
-  2. Generate an [OAuth token](http://twitchapps.com/tmi/) for your bot
-  3. Open DoomRed\twitchBot\cfg.cfg
-  4. Change the value of NICK to your bot's name (in lowercase)
-  5. Change the value of PASS to the OAuth token that was generated (including "oauth:")
-  6. Change the value of CHAN to "#" followed by the channel you wish to join (in lowercase). For example, if you wish to join the channel "TwitchChannel", you would change this value to "#twitchchannel"
+   1. Log into your bot's account (if you don't have an account for your bot, you can either create one or just use your own account).
+   2. Generate an [OAuth token](http://twitchapps.com/tmi/) for your bot
+   3. Open DoomRed\twitchBot\cfg.cfg
+   4. Change the value of NICK to your bot's name (in lowercase)
+   5. Change the value of PASS to the OAuth token that was generated (including "oauth:")
+   6. Change the value of CHAN to "#" followed by the channel you wish to join (in lowercase). For example, if you wish to join the channel "TwitchChannel", you would change this value to "#twitchchannel"
 4. Run DoomRed\setupBot.bat (double click on it)
 5. Download [VBA-RR](http://tasvideos.org/EmulatorResources/VBA.html)
 6. Obtain a ROM of Pokemon FireRed US V1.1

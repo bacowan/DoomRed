@@ -16,7 +16,7 @@ Pokemon FireRed rom hack that introduces twitch integration: viewers create thei
 6. Obtain a ROM of Pokemon FireRed US V1.1
 
 # Updating Emotes
-The mappings from emotes to urls are cache. If you want new emotes to appear in game, you have to update the cache. To do so run the following for Twitch emotes and FFZ emotes, respectively (double click on them):
+The mappings from emotes to urls are cached. If you want new emotes to appear in game, you have to update the cache. To do so run the following for Twitch emotes and FFZ emotes, respectively (double click on them):
 - DoomRed/updateTwitchEmotes.bat
 - DoomRed/updateFFZ.bat
 

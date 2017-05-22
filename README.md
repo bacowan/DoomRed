@@ -59,7 +59,7 @@ This game is still in a beta phase, so there are a number of improvements to be 
 - Gifted Pokemon have not been implemented. That means that your first Pokemon will be a regular Pokemon. It will actually change species after a while.
 - The game will crash after meeting a large number of Pokemon. I am unsure how many, but the first time it crashed on me was after playing for 8 straight hours.
 
-### Troubleshooting
+# Troubleshooting
 - If double clicking on any of the python scripts doesn't work, try the following:
   - Open a command prompt (type "cmd" into the start menu and click enter)
   - type the following into the command prompt and hit enter:

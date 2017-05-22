@@ -4,7 +4,7 @@ Pokemon FireRed rom hack that introduces twitch integration: viewers create thei
 # Setup Instructions
 1. Download this repo as a zip
 2. Download [python 3](https://www.python.org/downloads/) (make sure to check the option "add to system variables")
-3. set up config file:
+3. Set up config file:
    1. Log into your bot's account (if you don't have an account for your bot, you can either create one or just use your own account).
    2. Generate an [OAuth token](http://twitchapps.com/tmi/) for your bot
    3. Open DoomRed\twitchBot\cfg.cfg

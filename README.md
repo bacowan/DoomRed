@@ -57,4 +57,17 @@ In DoomRed\twitchBot\cfg.cfg there are other configurations that can be set rela
 ### Gotchas
 This game is still in a beta phase, so there are a number of improvements to be made. The comprehensive list of known issues is listed under Issues, but here are some important ones to be aware of:
 - Gifted Pokemon have not been implemented. That means that your first Pokemon will be a regular Pokemon. It will actually change species after a while.
-- The game will crash after meeting a large number of Pokemon. I am unsure how many, but I've tested it for about 3 hours in a row and there was no crashing.
+- The game will crash after meeting a large number of Pokemon. I am unsure how many, but the first time it crashed on me was after playing for 8 straight hours.
+
+### Troubleshooting
+- If double clicking on any of the python scripts doesn't work, try the following:
+  - Open a command prompt (type "cmd" into the start menu and click enter)
+  - type the following into the command prompt and hit enter:
+    - cd "path/to/script"
+  - type the following into the command prompt and hit enter:
+    - python name_of_script.py
+- To check if you have the correct version of python running:
+  - type the following into a command prompt:
+    - python -V
+  - the output should say:
+    - Python 3.6.0
